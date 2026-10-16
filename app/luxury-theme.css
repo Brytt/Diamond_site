@@ -1,0 +1,181 @@
+/* Aurelia typography and finish. Existing page grids and shopping flows are retained. */
+:root {
+  --ink: #252421;
+  --muted: #68665f;
+  --line: #e2dfd9;
+  --green: #35322c;
+  --cream: #f8f7f4;
+}
+body {
+  font-family: var(--sans);
+  font-weight: 400;
+  letter-spacing: .015em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.announcement {
+  background: #262521;
+  font-size: 11px;
+  letter-spacing: .075em;
+}
+.announcement span { color: #e4ded0; }
+.wordmark {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 35px;
+  letter-spacing: .19em;
+}
+.wordmark span {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 9px;
+  letter-spacing: .3em;
+  color: #68665f;
+}
+.concierge { font-size: 12px; color: #66635d; }
+.nav-item > a { font-size: 12px; letter-spacing: .09em; text-transform: uppercase; }
+.desktop-nav { gap: 32px; }
+.eyebrow { font-size: 10px; letter-spacing: .17em; color: #766b59; font-weight: 500; }
+.collection-intro h1 {
+  font-family: var(--serif);
+  font-size: 44px;
+  font-weight: 400;
+  letter-spacing: -.035em;
+  line-height: 1.2;
+}
+.collection-intro p { font-size: 14px; color: #6c6963; line-height: 1.75; }
+.intro-note { font-size: 11px; color: #726959; }
+.steps { background: #fbfaf8; border-color: var(--line); }
+.step { color: #73716c; }
+.step.current { background: #f4f1ea; color: #39362e; }
+.step-number { border-color: #d5cfc2; }
+.current .step-number { background: #35322c; border-color: #35322c; }
+.step strong { font-weight: 400; letter-spacing: .02em; }
+.step small { color: #7a7163; }
+.step-chevron { background: #fbfaf8; }
+.smart-banner { background: #f7f5f0; border-color: #e5e0d6; }
+.smart-banner strong { font-size: 19px; letter-spacing: -.025em; }
+.smart-banner p { font-size: 12px; color: #6f6a60; }
+.smart-banner button { font-size: 12px; color: #51493c; letter-spacing: .025em; }
+.filter-topline { font-size: 12px; }
+.filter-topline button { font-size: 11px; color: #6b665c; }
+.diamond-types { background: #f5f3ee; }
+.diamond-types button { font-size: 12px; letter-spacing: .015em; }
+.diamond-types .selected { border-color: #cec4b2; color: #443c2f; box-shadow: none; }
+.filter-label strong { font-size: 12px; font-weight: 500; letter-spacing: .025em; }
+.tooltip { color: #7d776d; }
+.tooltip > span { background: #35322c; }
+.shape-options button { font-size: 11px; }
+.shape-options .selected { border-color: #a89776; background: #f8f5ef; color: #4c4130; }
+.shape-options button:hover { border-color: #b8ad98; }
+.grade-tiles button { background: #fdfcf9; border-color: #dfdbd3; font-size: 11px; }
+.grade-tiles button.selected { background: #f1ebe0; border-color: #b2a184; color: #43392a; }
+.clarity-tiles button { font-size: 10px; }
+.range-caption { color: #777268; font-size: 10px; }
+.range-track { background: #e5e0d6; }
+.range-fill { background: #a39170; }
+.range-thumb { border-color: #9a8766; }
+.range-inputs span { color: #777168; font-size: 10px; }
+.range-inputs input { font-size: 12px; font-variant-numeric: tabular-nums; }
+.advanced-toggle, .quick-ship { color: #665f52; font-size: 11px; }
+.switch { background: #d9d5cc; }
+.quick-ship input:checked + .switch { background: #8e7b5b; }
+.filter-chips button { color: #625641; background: #f7f3eb; border-color: #e4dbc9; font-size: 11px; }
+.result-tabs button { font-size: 13px; color: #757067; }
+.result-tabs button.active { color: #40382c; border-bottom-color: #98825f; }
+.result-tabs span { background: #f1ece3; color: #675841; font-size: 10px; }
+.result-tools label { font-size: 11px; color: #716b60; }
+.result-tools select { font-size: 12px; color: #433f36; }
+.view-toggle button.active { background: #f3eee5; color: #67573d; }
+.results-caption { font-size: 11px; color: #726d62; }
+.diamond-card { border-color: #e5e1da; }
+.diamond-card:hover { border-color: #c4b79d; box-shadow: 0 4px 18px #3b332909; }
+.product-media { background: #f8f7f4; }
+.product-badge { color: #6a5e4d; font-size: 8px; letter-spacing: .1em; border-color: #e3ddd0; }
+.wish-button { color: #777064; }
+.wish-button.saved { color: #967c52; }
+.card-eyebrow { font-size: 9px; letter-spacing: .1em; color: #7a6a53; }
+.product-info h3 { font-family: var(--sans); font-size: 15px; font-weight: 400; letter-spacing: .015em; }
+.product-info > p { font-size: 11px; color: #716b61; gap: 5px; }
+.card-price strong { font-size: 16px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.card-price small { font-size: 9px; color: #776952; }
+.card-bottom { font-size: 11px; }
+.card-bottom label { color: #6e675b; }
+.card-bottom a { color: #655538; }
+.card-bottom input { width: 12px; height: 12px; accent-color: #8d7754; }
+.pagination { font-size: 12px; color: #6d6659; }
+.pagination button.active { border-color: #ab9672; background: #f7f3ea; color: #655130; }
+.editorial-note h2 { font-size: 33px; letter-spacing: -.025em; }
+.editorial-note p { font-size: 14px; color: #6e695f; }
+.editorial-note a { font-size: 12px; color: #6b5737; border-color: #c5b38f; }
+.button { font-size: 12px; letter-spacing: .075em; font-weight: 400; border-radius: 0; }
+.button-primary { background: #35322c; border-color: #35322c; }
+.button-primary:hover { background: #50483b; }
+.button-outline { border-color: #cfc5b3; color: #514530; }
+.button-ghost, .text-button { color: #705c3c; }
+.button-ghost:hover, .button-outline:hover { background: #f8f5ed; }
+.text-button { font-size: 12px; }
+.detail-info h1, .page-heading h1 { letter-spacing: -.03em; }
+.detail-info h1 { font-size: 38px; }
+.detail-price { font-family: var(--sans); font-weight: 400; font-variant-numeric: tabular-nums; }
+.detail-grades small { font-size: 11px; color: #756e61; }
+.detail-grades strong { font-size: 14px; font-weight: 400; }
+.notice { background: #f7f4ed; border-color: #e4dbca; color: #71634c; font-size: 12px; }
+.muted, .page-heading p { font-size: 14px; color: #736c60; }
+.summary-panel { background: #fbf9f4; border-color: #e0d8c9; }
+.summary-panel p { color: #71695c; font-size: 13px; }
+.summary-panel .total { color: #332e24; font-size: 17px; }
+.setting-card.selected { background: #f7f2e8; border-color: #ab9571; }
+.metal-options button.selected { background: #f3ecdf; border-color: #aa9470; }
+.comparison-table .different { background: #f7f2e8; }
+.compare-tray { border-color: #d2c5ad; box-shadow: 0 6px 30px #42362418; }
+.tray-label strong { font-size: 12px; }
+.tray-label small { font-size: 10px; color: #756c5b; }
+.tray-items span { font-size: 12px; }
+.tray-items small { font-size: 10px; color: #776c58; }
+footer { background: #f8f6f1; border-color: #e4ddd1; }
+.trust-row > div { color: #675b46; }
+.trust-row span { font-size: 12px; }
+.trust-row small { font-size: 11px; color: #7a7265; }
+.footer-main h4 { font-size: 12px; font-weight: 500; letter-spacing: .06em; }
+.footer-main a:not(.wordmark) { font-size: 12px; color: #71695b; }
+.footer-main p { font-size: 12px; color: #776e5e; line-height: 1.7; }
+.footer-bottom { font-size: 10px; color: #7b7262; }
+@media (max-width: 1100px) {
+  .desktop-nav { gap: 20px; }
+  .nav-item > a { font-size: 11px; letter-spacing: .05em; }
+  .product-info > p { font-size: 10px; }
+}
+@media (max-width: 800px) {
+  .wordmark { font-size: 28px; }
+  .wordmark span { font-size: 8px; }
+  .announcement { font-size: 9px; }
+  .collection-intro h1 { font-size: 35px; }
+  .collection-intro p { font-size: 13px; }
+  .smart-banner strong { font-size: 16px; }
+  .smart-banner p { font-size: 11px; }
+  .smart-banner button { font-size: 11px; }
+  .result-tabs button { font-size: 11px; }
+  .result-tools label { font-size: 0; }
+  .result-tools select { font-size: 11px; }
+  .results-caption { font-size: 10px; }
+  .product-info h3 { font-size: 14px; }
+  .product-info > p { font-size: 10px; flex-wrap: wrap; }
+  .product-badge { font-size: 7px; }
+  .card-price strong { font-size: 15px; }
+  .card-price small { font-size: 8px; }
+  .card-bottom { font-size: 10px; gap: 5px; }
+  .trust-row span { font-size: 11px; }
+  .trust-row small { font-size: 10px; }
+  .detail-info h1 { font-size: 32px; }
+  .tray-label { display: none; }
+}
+@media (max-width: 420px) {
+  .smart-banner strong { font-size: 14px; }
+  .smart-banner p { font-size: 10px; }
+  .card-price { flex-wrap: wrap; }
+  .card-price strong { font-size: 14px; }
+  .card-bottom { font-size: 9px; }
+  .card-bottom input { width: 11px; height: 11px; }
+  .editorial-note h2 { font-size: 29px; }
+}

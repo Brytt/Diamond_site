@@ -1,0 +1,4 @@
+import { NextResponse } from 'next/server';
+import { getCatalog } from '@/lib/repository';
+import { numericFilters } from '@/lib/catalog';
+export async function GET(request:Request){try{const p=new URL(request.url).searchParams;for(const key of Object.keys(numericFilters)){for(const suffix of ['Min','Max']){const value=p.get(key+suffix);if(value!==null&&(!Number.isFinite(Number(value))||Number(value)<0))return NextResponse.json({error:'Filter ranges must be positive numbers.'},{status:400});}if(p.has(key+'Min')&&p.has(key+'Max')&&Number(p.get(key+'Min'))>Number(p.get(key+'Max')))return NextResponse.json({error:`${key}: minimum must not exceed maximum.`},{status:400});}return NextResponse.json(await getCatalog(p));}catch{return NextResponse.json({error:'The catalog could not be loaded. Please try again.'},{status:503});}}

@@ -1,0 +1,3 @@
+import Link from 'next/link';
+export const metadata={title:'Shopping guidance'};
+export default function Page(){return <main id="main" className="reference-section contact-page"><span className="reference-kicker">HERE TO GUIDE YOUR NEXT STEP</span><h1>A little clarity,<br/>a beautiful beginning.</h1><p>This is a demonstration storefront. Live chat, appointments, and merchant customer support have not been connected.</p><div className="contact-options"><Link href="/education">Explore the diamond guides</Link><Link href="/collections/all-diamonds">Compare the collection</Link><Link href="/ring-builder">Create your ring</Link><Link href="/account">Your account</Link></div></main>;}

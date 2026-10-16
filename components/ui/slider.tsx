@@ -1,0 +1,3 @@
+'use client';
+import * as Primitive from '@radix-ui/react-slider';
+export function Slider({value,onValueChange,min,max,step=1,label}:{value:number[];onValueChange:(value:number[])=>void;min:number;max:number;step?:number;label:string}){return <Primitive.Root className="range-root" value={value} onValueChange={onValueChange} min={min} max={max} step={step} minStepsBetweenThumbs={0}><Primitive.Track className="range-track"><Primitive.Range className="range-fill"/></Primitive.Track>{value.map((_,i)=><Primitive.Thumb key={i} aria-label={`${label} ${i?'maximum':'minimum'}`} className="range-thumb"/>)}</Primitive.Root>;}

@@ -1,0 +1,5 @@
+import {notFound} from 'next/navigation';
+import {getDiamond} from '@/lib/repository';
+import {Detail} from '@/components/detail';
+export async function generateMetadata({params}:{params:Promise<{id:string}>}){const {id}=await params;const d=await getDiamond(id);return {title:d?`${d.carat} Carat ${d.shape} Diamond`:'Diamond not found',alternates:{canonical:`/diamonds/${id}`}};}
+export default async function Page({params}:{params:Promise<{id:string}>}){const {id}=await params;const d=await getDiamond(id);if(!d)notFound();return <><Detail diamond={d}/>{!d.isDemo&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify({'@context':'https://schema.org','@type':'Product',name:`${d.carat} Carat ${d.shape} Diamond`,sku:d.id,image:new URL(d.image,process.env.NEXT_PUBLIC_SITE_URL||'http://localhost:3000').href,offers:{'@type':'Offer',price:d.price,priceCurrency:'USD',availability:d.available?'https://schema.org/InStock':'https://schema.org/OutOfStock'}}).replace(/</g,'\\u003c')}}/>}</>;}

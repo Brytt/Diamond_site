@@ -1,0 +1,221 @@
+generator client {
+ provider = "prisma-client-js"
+}
+datasource db {
+ provider = "postgresql"
+ url = env("DATABASE_URL")
+}
+model User {
+ id String @id @default(cuid())
+ email String @unique
+ name String?
+ role String @default("CUSTOMER")
+ createdAt DateTime @default(now())
+ wishlist Wishlist[]
+ comparisons Comparison[]
+ configurations RingConfiguration[]
+ cart Cart?
+ orders Order[]
+ addresses Address[]
+}
+model Address {
+ id String @id @default(cuid())
+ userId String
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ recipient String
+ line1 String
+ line2 String?
+ city String
+ region String?
+ postalCode String
+ country String
+ @@index([userId])
+}
+model Diamond {
+ id String @id
+ shape String
+ type String
+ price Float
+ pricePerCarat Float
+ carat Float
+ color String
+ clarity String
+ cut String
+ certification String
+ quickShip Boolean @default(false)
+ polish String
+ symmetry String
+ fluorescence String
+ width Float
+ length Float
+ height Float
+ depth Float
+ table Float
+ ratio Float
+ crown Float
+ pavilion Float
+ culet String
+ image String
+ isDemo Boolean @default(true)
+ available Boolean @default(true)
+ createdAt DateTime @default(now())
+ updatedAt DateTime @updatedAt
+ images DiamondImage[]
+ certificate DiamondCertificate?
+ inventory Inventory?
+ wishlists Wishlist[]
+ comparisons Comparison[]
+ configurations RingConfiguration[]
+ cartItems CartItem[]
+ orderItems OrderItem[]
+ @@index([type,shape,available,price])
+ @@index([type,shape,available,carat])
+ @@index([color,clarity])
+ @@index([available,pricePerCarat])
+ @@index([createdAt])
+}
+model DiamondImage {
+ id String @id @default(cuid())
+ diamondId String
+ diamond Diamond @relation(fields:[diamondId],references:[id],onDelete:Cascade)
+ url String
+ kind String @default("image")
+ position Int @default(0)
+ @@index([diamondId])
+}
+model DiamondCertificate {
+ id String @id @default(cuid())
+ diamondId String @unique
+ diamond Diamond @relation(fields:[diamondId],references:[id],onDelete:Cascade)
+ laboratory String
+ number String @unique
+ url String?
+ verified Boolean @default(false)
+}
+model Inventory {
+ id String @id @default(cuid())
+ diamondId String @unique
+ diamond Diamond @relation(fields:[diamondId],references:[id],onDelete:Cascade)
+ status String @default("AVAILABLE")
+ reservedUntil DateTime?
+ updatedAt DateTime @updatedAt
+}
+model RingSetting {
+ id String @id
+ name String
+ style String
+ price Float
+ description String
+ available Boolean @default(true)
+ configurations RingConfiguration[]
+ cartItems CartItem[]
+ orderItems OrderItem[]
+}
+model RingConfiguration {
+ id String @id @default(cuid())
+ userId String
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ diamondId String
+ diamond Diamond @relation(fields:[diamondId],references:[id])
+ settingId String
+ setting RingSetting @relation(fields:[settingId],references:[id])
+ metal String
+ size String
+ createdAt DateTime @default(now())
+ @@index([userId])
+ @@index([diamondId])
+ @@index([settingId])
+}
+model Wishlist {
+ id String @id @default(cuid())
+ userId String
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ diamondId String
+ diamond Diamond @relation(fields:[diamondId],references:[id],onDelete:Cascade)
+ @@unique([userId,diamondId])
+ @@index([diamondId])
+}
+model Comparison {
+ id String @id @default(cuid())
+ userId String
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ diamondId String
+ diamond Diamond @relation(fields:[diamondId],references:[id],onDelete:Cascade)
+ @@unique([userId,diamondId])
+ @@index([diamondId])
+}
+model Cart {
+ id String @id @default(cuid())
+ userId String @unique
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ items CartItem[]
+ updatedAt DateTime @updatedAt
+}
+model CartItem {
+ id String @id @default(cuid())
+ cartId String
+ cart Cart @relation(fields:[cartId],references:[id],onDelete:Cascade)
+ diamondId String
+ diamond Diamond @relation(fields:[diamondId],references:[id])
+ settingId String?
+ setting RingSetting? @relation(fields:[settingId],references:[id])
+ metal String?
+ size String?
+ @@unique([cartId,diamondId])
+ @@index([diamondId])
+ @@index([settingId])
+}
+model Order {
+ id String @id @default(cuid())
+ userId String
+ user User @relation(fields:[userId],references:[id])
+ status String @default("PENDING")
+ subtotal Int
+ currency String @default("usd")
+ stripeSessionId String? @unique
+ shipping Json?
+ createdAt DateTime @default(now())
+ items OrderItem[]
+ payment Payment?
+ @@index([userId,createdAt])
+ @@index([status,createdAt])
+}
+model OrderItem {
+ id String @id @default(cuid())
+ orderId String
+ order Order @relation(fields:[orderId],references:[id],onDelete:Cascade)
+ diamondId String
+ diamond Diamond @relation(fields:[diamondId],references:[id])
+ settingId String?
+ setting RingSetting? @relation(fields:[settingId],references:[id])
+ metal String?
+ size String?
+ price Int
+ snapshot Json
+ @@index([orderId])
+ @@index([diamondId])
+ @@index([settingId])
+}
+model Payment {
+ id String @id @default(cuid())
+ orderId String @unique
+ order Order @relation(fields:[orderId],references:[id])
+ providerId String @unique
+ amount Int
+ currency String
+ status String
+ createdAt DateTime @default(now())
+}
+model Promotion {
+ id String @id @default(cuid())
+ code String @unique
+ percent Int
+ active Boolean @default(false)
+ expiresAt DateTime?
+}
+model Content {
+ slug String @id
+ title String
+ body String
+ updatedAt DateTime @updatedAt
+}
